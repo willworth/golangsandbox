@@ -1,12 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
+const accountBalanceFile = "balance.txt"
+
+func writeBalanceToFile(balance float64) {
+	balanceText := fmt.Sprint(balance)
+	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644) //file permissions notation
+}
+
+func getBalanceFromFile() float64 {
+	data, _ := os.ReadFile(accountBalanceFile)
+	balanceText := string(data)
+	balance, _ := strconv.ParseFloat(balanceText, 64)
+	// underscore indicates we know there's a var, but we don't
+	// want to work with it, or have unused var name errors
+	return balance
+}
 
 func main() {
 
 	fmt.Println("Welcome to GO Bank")
 
-	var accountBalance = 1000.0
+	var accountBalance = getBalanceFromFile()
 
 	for {
 
@@ -35,6 +55,7 @@ func main() {
 			}
 			accountBalance += depositAmount
 			fmt.Println("Your new balance is", accountBalance)
+			writeBalanceToFile(accountBalance)
 		} else if choice == 3 {
 			fmt.Print("How much do you want to withdraw? ")
 			var withdrawAmount float64 // only visible in this branch
@@ -46,6 +67,7 @@ func main() {
 			}
 			accountBalance -= withdrawAmount
 			fmt.Println("Your new balance is", accountBalance)
+			writeBalanceToFile(accountBalance)
 		} else {
 			fmt.Println("Bye")
 			break
