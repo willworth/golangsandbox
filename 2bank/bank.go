@@ -2,39 +2,28 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strconv"
+
+	"example.com/inv-calc/2bank/fileops"
 )
 
 const accountBalanceFile = "balance.txt"
-
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFile, []byte(balanceText), 0644) //file permissions notation
-}
-
-func getBalanceFromFile() float64 {
-	data, _ := os.ReadFile(accountBalanceFile)
-	balanceText := string(data)
-	balance, _ := strconv.ParseFloat(balanceText, 64)
-	// underscore indicates we know there's a var, but we don't
-	// want to work with it, or have unused var name errors
-	return balance
-}
 
 func main() {
 
 	fmt.Println("Welcome to GO Bank")
 
-	var accountBalance = getBalanceFromFile()
+	var accountBalance, err = fileops.GetFloatFromFile(accountBalanceFile)
+
+	if err != nil {
+		fmt.Println("ERROR")
+		fmt.Println(err)
+		fmt.Println("----")
+		// panic("I can't go on!")
+	}
 
 	for {
 
-		fmt.Println("What do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Withdraw money")
-		fmt.Println("4. Exit")
+		presentOptions()
 
 		var choice int
 		fmt.Print("Please choose an option:")
@@ -55,7 +44,7 @@ func main() {
 			}
 			accountBalance += depositAmount
 			fmt.Println("Your new balance is", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileops.WriteFloatToFile(accountBalance, accountBalanceFile)
 		} else if choice == 3 {
 			fmt.Print("How much do you want to withdraw? ")
 			var withdrawAmount float64 // only visible in this branch
@@ -67,7 +56,7 @@ func main() {
 			}
 			accountBalance -= withdrawAmount
 			fmt.Println("Your new balance is", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileops.WriteFloatToFile(accountBalance, accountBalanceFile)
 		} else {
 			fmt.Println("Bye")
 			break
