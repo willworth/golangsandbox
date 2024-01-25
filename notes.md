@@ -28,4 +28,8 @@ variables that store value addresses instead of values
 why pointers
 
 1. avoid unnecessary value copies
-   2
+2. directly mutate values
+
+dereferencing = \*varName = gives the value of the address stored as a pointer
+
+you can't perform pointer maths
