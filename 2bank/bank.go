@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 
+	"github.com/Pallinder/go-randomdata"
+
 	"example.com/inv-calc/2bank/fileops"
 )
 
@@ -11,6 +13,7 @@ const accountBalanceFile = "balance.txt"
 func main() {
 
 	fmt.Println("Welcome to GO Bank")
+	fmt.Println("Call us", randomdata.PhoneNumber())
 
 	var accountBalance, err = fileops.GetFloatFromFile(accountBalanceFile)
 
