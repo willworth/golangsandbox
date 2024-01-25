@@ -28,6 +28,18 @@ func (u *user) clearUsername() { //must be a pointer or it'll mutate a copy
 	u.lastName = ""
 }
 
+//Constructor function is a pattern rather than lang feature
+
+func newUser(firstName, lastName, birthdate string) *user {
+	return &user{
+		firstName: firstName,
+		lastName:  lastName,
+		birthdate: birthdate,
+		createdAt: time.Now(),
+	}
+
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -35,17 +47,17 @@ func main() {
 
 	// ... do something awesome with that gathered data!
 
-	var appUser user
+	var appUser *user
 
-	appUser = user{
-		firstName: userFirstName,
-		lastName:  userLastName,
-		birthdate: userBirthdate,
-		createdAt: time.Now(), //trailing comma required
-	}
+	appUser = newUser(
+		userFirstName,
+		userLastName,
+		userBirthdate)
 
 	// fmt.Println(firstName, lastName, birthdate)
 	// outputUserDetails(appUser)
+	appUser.outputUserDetails()
+	appUser.clearUsername()
 	appUser.outputUserDetails()
 }
 
