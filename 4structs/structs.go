@@ -18,6 +18,16 @@ type user struct {
 	createdAt time.Time
 }
 
+// user here is called a receiver, indicating the struct to which it'll be attached
+func (u user) outputUserDetails() { //attaches as method to user struct
+	fmt.Println(u.firstName, u.lastName, u.birthdate)
+}
+
+func (u *user) clearUsername() { //must be a pointer or it'll mutate a copy
+	u.firstName = ""
+	u.lastName = ""
+}
+
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
 	userLastName := getUserData("Please enter your last name: ")
@@ -35,12 +45,13 @@ func main() {
 	}
 
 	// fmt.Println(firstName, lastName, birthdate)
-	outputUserDetails(appUser)
+	// outputUserDetails(appUser)
+	appUser.outputUserDetails()
 }
 
-func outputUserDetails(u user) {
-	fmt.Println(u.firstName, u.lastName, u.birthdate)
-}
+// func outputUserDetails(u user) {
+// 	fmt.Println(u.firstName, u.lastName, u.birthdate)
+// }
 
 func getUserData(promptText string) string {
 	fmt.Print(promptText)
