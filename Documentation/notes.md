@@ -35,3 +35,5 @@ dereferencing = \*varName = gives the value of the address stored as a pointer
 you can't perform pointer maths
 
 pointers to structs don't need to be dereferenced.
+
+with anonymous embedding you can access the fields and methods directly on the struct

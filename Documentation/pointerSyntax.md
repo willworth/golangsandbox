@@ -58,3 +58,23 @@ In this example:
 - Inside the `main` function, when `usr.clearUsername()` is called, Go automatically takes the address of `usr` (as if `&usr.clearUsername()` was written) because `clearUsername` is defined with a pointer receiver.
 
 By using a pointer receiver in your method (`u *user`), you ensure that any modifications made to `u` within the method affect the original `user` instance, rather than a copy of it. This is crucial for methods that need to update or mutate the state of the instance they're called on.
+
+---
+
+Here's a markdown table summarizing the key points about Go's pointer syntax and usage:
+
+| Symbol | Context          | Description                                                       |
+| ------ | ---------------- | ----------------------------------------------------------------- |
+| `*`    | Type Declaration | Denotes a pointer type. `*T` is a pointer to a value of type `T`. |
+| `*`    | Dereferencing    | Accesses the value at the address the pointer refers to.          |
+| `&`    | Address Operator | Obtains the memory address of a variable, creating a pointer.     |
+
+For instance, in the context of your `clearUsername` function:
+
+| Usage            | Syntax           | Example                                                    | Description                                                                                                             |
+| ---------------- | ---------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| Pointer Type     | `func (u *user)` | `*user` is a pointer to a user type.                       | Indicates that the function receiver `u` is a pointer to a `user`, allowing the function to modify the `user` instance. |
+| Dereferencing    | `*p = 20`        | Dereferences `p` to set the value it points to.            | Used to access or modify the value that the pointer, `p`, points to.                                                    |
+| Address Operator | `p := &x`        | `&x` gets the address of `x`, making `p` a pointer to `x`. | Used to create a pointer `p` that stores the address of variable `x`.                                                   |
+
+This table provides a concise reference to understand how `*` and `&` are used in Go for pointer-related operations, including type declaration, dereferencing, and obtaining a variable's address.
