@@ -20,3 +20,12 @@ https://pkg.go.dev/github.com/pallinder/go-randomdata
 go get github.com/Pallinder/go-randomdata
 
 go get is the global install
+
+# pointers
+
+variables that store value addresses instead of values
+
+why pointers
+
+1. avoid unnecessary value copies
+   2
