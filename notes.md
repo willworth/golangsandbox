@@ -13,4 +13,10 @@ if you have both files as part of eg main package, no import statement is requir
 
 every package must have its own subfolder
 
-only upper case funcs and vars are available in other packages
+only upper case funcs and vars are available in other packages.
+
+https://pkg.go.dev/github.com/pallinder/go-randomdata
+
+go get github.com/Pallinder/go-randomdata
+
+go get is the global install
