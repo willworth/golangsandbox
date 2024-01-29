@@ -37,3 +37,5 @@ you can't perform pointer maths
 pointers to structs don't need to be dereferenced.
 
 with anonymous embedding you can access the fields and methods directly on the struct
+
+scan is mostly used for single word input
