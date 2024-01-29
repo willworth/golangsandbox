@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"strings"
 
-	"example.com/inv-calc/4structs/user"
+	"example.com/example/4structs/user"
 )
 
 var reader = bufio.NewReader(os.Stdin)

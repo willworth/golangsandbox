@@ -1,4 +1,4 @@
-module example.com/inv-calc
+module example.com/example
 
 go 1.21
 

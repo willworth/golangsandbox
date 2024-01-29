@@ -5,7 +5,7 @@ import (
 
 	"github.com/Pallinder/go-randomdata"
 
-	"example.com/inv-calc/2bank/fileops"
+	"example.com/example/2bank/fileops"
 )
 
 const accountBalanceFile = "balance.txt"
