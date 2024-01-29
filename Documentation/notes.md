@@ -39,3 +39,6 @@ pointers to structs don't need to be dereferenced.
 with anonymous embedding you can access the fields and methods directly on the struct
 
 scan is mostly used for single word input
+
+An interface is a contract that guarantees a val(normally a struct) has a certain method. They don't define logic, just state that the method and its logic exists somewhere
+save => saver if only contains one method is the convention
