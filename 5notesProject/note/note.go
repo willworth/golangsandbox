@@ -10,9 +10,9 @@ import (
 )
 
 type Note struct {
-	Title     string
-	Content   string
-	CreatedAt time.Time
+	Title     string    `json:"title"` //struct tags
+	Content   string    `json:"content"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 // receiver shows what struct the method is attached to
