@@ -42,3 +42,17 @@ scan is mostly used for single word input
 
 An interface is a contract that guarantees a val(normally a struct) has a certain method. They don't define logic, just state that the method and its logic exists somewhere
 save => saver if only contains one method is the convention
+
+## Generics
+
+Generics in Go are used to write flexible, reusable functions and types that can operate on different types while still providing type safety. They are particularly useful when you want to create a function or a data structure that can work with any data type, not just a specific one.
+
+The T in square brackets ([T]) is a type parameter. It's a placeholder for any type that will be specified when the function is called. The name T is conventional, but you can use any valid identifier.
+
+```go
+func add[T any](a,b T)(T, T){
+    return a + b
+}
+
+
+```
