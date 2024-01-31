@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"example.com/example/9taxProject/cmdmanager" //alias!
 	"example.com/example/9taxProject/prices"
 )
@@ -15,6 +17,11 @@ func main() {
 		cmdm := cmdmanager.New()
 		// priceJob := prices.NewTaxIncludedPriceJob(fm, taxRate)
 		priceJob := prices.NewTaxIncludedPriceJob(cmdm, taxRate)
-		priceJob.Process()
+		err := priceJob.Process()
+
+		if err != nil {
+			fmt.Println("Could not process job")
+			fmt.Println(err)
+		}
 	}
 }
