@@ -31,12 +31,13 @@ func (job *TaxIncludedPriceJob) LoadData() error {
 	return nil
 }
 
-func (job *TaxIncludedPriceJob) Process() error {
-	err := job.LoadData()
+func (job *TaxIncludedPriceJob) Process(doneChan chan bool) {
+	// err := job.LoadData()
+	job.LoadData()
 
-	if err != nil {
-		return err
-	}
+	// if err != nil {
+	// 	return err
+	// }
 
 	result := make(map[string]string)
 
@@ -47,7 +48,8 @@ func (job *TaxIncludedPriceJob) Process() error {
 	}
 	job.TaxIncludedPrices = result
 
-	return job.IOManager.WriteResult(job)
+	job.IOManager.WriteResult(job)
+	doneChan <- true
 	// fmt.Sprintf("result_%.0f.json", job.TaxRate*100),
 }
 
