@@ -1,6 +1,9 @@
 package models
 
 import (
+	"errors"
+	"fmt"
+
 	"example.com/example/10restAPI/db"
 	"example.com/example/10restAPI/utils"
 )
@@ -35,3 +38,49 @@ func (u User) Save() error {
 	u.ID = userId
 	return err
 }
+func (u User) ValidateCredentials() error {
+	query := "SELECT email, password FROM users WHERE email = ?"
+	row := db.DB.QueryRow(query, u.Email)
+
+	var email, retrievedPassword string
+
+	// Declaring a variable for the email even though it's not used, to avoid  error.
+	//Always ensure the number of variables in the Scan method matches the number of columns selected in the SQL query.
+	err := row.Scan(&email, &retrievedPassword)
+	if err != nil {
+		return fmt.Errorf("Credentials invalid can't get pw: %v", err)
+	}
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
+	if !passwordIsValid {
+		return errors.New("Credentials invalid")
+	}
+
+	return nil
+}
+
+// func (u User) ValidateCredentials() error {
+// 	query := "SELECT email, password FROM users WHERE email = ?"
+// 	row := db.DB.QueryRow(query, u.Email)
+
+// 	var retrievedPassword string
+
+// 	err := row.Scan(&retrievedPassword)
+
+// 	// if err != nil {
+// 	// 	// return errors.New("Credentials invalid")
+// 	// 	return errors.New("Credentials invalid can't get pw")
+// 	// }
+// 	if err != nil {
+// 		// This will include the specific database error message in your return error
+// 		return fmt.Errorf("Credentials invalid can't get pw: %v", err)
+// 	}
+
+// 	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
+
+// 	if !passwordIsValid {
+// 		return errors.New("Credentials invalid")
+// 	}
+
+// 	return nil
+// }
