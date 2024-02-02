@@ -37,18 +37,6 @@ func getEvent(context *gin.Context) {
 }
 
 func createEvent(context *gin.Context) {
-	// token := context.Request.Header.Get("Authorization")
-	// if token == "" {
-	// 	context.JSON(http.StatusUnauthorized, gin.H{"message": "No JWT bearer token detected"})
-	// 	return
-	// }
-	// fmt.Println("Received token:", token)
-
-	// userId, err := utils.VerifyToken(token)
-	// if err != nil {
-	// 	context.JSON(http.StatusBadRequest, gin.H{"message": "Not authorized"})
-	// 	return
-	// }
 
 	var event models.Event
 	err := context.ShouldBindJSON(&event)
@@ -118,7 +106,13 @@ func deleteEvent(context *gin.Context) {
 		return
 	}
 
+	userId := context.GetInt64("userId")
 	event, err := models.GetEventByID(eventId)
+
+	if event.UserID != userId {
+		context.JSON(http.StatusUnauthorized, gin.H{"message": "Not the event creator"})
+		return
+	}
 
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch the event"})

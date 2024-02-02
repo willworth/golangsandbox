@@ -1,6 +1,6 @@
 POST http://localhost:8080/events
 Content-type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9tZzFAdGVzdC5jb20iLCJleHAiOjE3MDY4OTIzOTksInVzZXJJZCI6IjEifQ.YdBthmxp7iXxcenTTtsxcFNg3T-IwNdKnwh7JOQpSag
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9tZzFAdGVzdC5jb20iLCJleHAiOjE3MDY4OTU5MjcsInVzZXJJZCI6IjEifQ.5Aq3QiTzuAQyJO8nHM_NU-5j7RB1T53KdpRTpoOhvRk
 
 {
     "name": "Test dgfssgdssgedgevent2",
