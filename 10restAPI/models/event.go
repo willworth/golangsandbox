@@ -17,7 +17,7 @@ type Event struct {
 
 var events []Event = []Event{} // alt of events := []Event{}
 
-func (e Event) Save() error {
+func (e *Event) Save() error {
 	query := `
 	INSERT INTO events(name, description, location, dateTime, user_id)
 	VALUES (?,?,?,?,?)` // to avoid sql injection attacks
