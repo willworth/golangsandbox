@@ -62,3 +62,9 @@ func add[T any](a,b T)(T, T){
 anything as a key
 structs are predefined structures
 if it's a custom collection with labels, you want a map
+
+
+
+## Testing
+
+
