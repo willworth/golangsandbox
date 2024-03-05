@@ -23,6 +23,8 @@ go get is the global install
 
 # pointers
 
+https://www.digitalocean.com/community/conceptual-articles/understanding-pointers-in-go
+
 variables that store value addresses instead of values
 
 why pointers
@@ -63,8 +65,16 @@ anything as a key
 structs are predefined structures
 if it's a custom collection with labels, you want a map
 
+## Goroutines and concurrency
 
+One of Go's advantages is its high performance and focus on concurrency
 
-## Testing
+## defer to end of enclosing function
 
+defer file.Close()
 
+# hashing
+
+go get -u golang.org/x/crypto
+
+go get -u github.com/golang-jwt/jwt/v5
